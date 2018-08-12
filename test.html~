@@ -1,0 +1,140 @@
+<html>
+ <head>
+  <title>Album - Test</title>
+ </head>
+
+ <body>
+ <!-- Remember to include jQuery :) -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+ <!-- jQuery Modal -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+ <style>
+   .grid-container {
+   display: grid;
+   grid-template-columns: auto auto auto;
+   background-color: #333333;
+   padding: 10px;
+   }
+   .grid-item {
+   background-color: #DBDADA;
+   border: 1px solid #FFFFFF;
+   padding: 20px;
+   font-size: 30px;
+   text-align: center;
+   }
+ </style>
+
+ <script type="text/javascript" charset="utf-8">
+   $(function() {
+
+   function log_modal_event(event, modal) {
+   if(typeof console != 'undefined' && console.log) console.log("[event] " + event.type);
+   };
+
+   $(document).on($.modal.BEFORE_BLOCK, log_modal_event);
+   $(document).on($.modal.BLOCK, log_modal_event);
+   $(document).on($.modal.BEFORE_OPEN, log_modal_event);
+   $(document).on($.modal.OPEN, log_modal_event);
+   $(document).on($.modal.BEFORE_CLOSE, log_modal_event);
+   $(document).on($.modal.CLOSE, log_modal_event);
+   $(document).on($.modal.AFTER_CLOSE, log_modal_event);
+   $(document).on($.modal.AJAX_SEND, log_modal_event);
+   $(document).on($.modal.AJAX_SUCCESS, log_modal_event);
+   $(document).on($.modal.AJAX_COMPLETE, log_modal_event);
+
+   $('#more').click(function() {
+   $(this).parent().after($(this).parent().next().clone());
+   return false;
+   });
+
+   $('#manual-ajax').click(function(event) {
+   event.preventDefault();
+   this.blur();
+   $.get(this.href, function(html) {
+   $(html).appendTo('body').modal();
+   });
+   });
+
+   $('a[href="#ex5"]').click(function(event) {
+   event.preventDefault();
+   $(this).modal({
+   escapeClose: false,
+   clickClose: false,
+   showClose: false
+   });
+   });
+
+   $('a[href="#ex6-2b"],a[href="#ex6-3b"]').click(function(event) {
+   event.preventDefault();
+   $(this).modal({
+   closeExisting: false
+   });
+   });
+
+   $('a[href="#ex7"]').click(function(event) {
+   event.preventDefault();
+   $(this).modal({
+   fadeDuration: 250
+   });
+   });
+
+   $('a[href="#ex18"]').click(function(event) {
+   event.preventDefault();
+   $(this).modal({
+   fadeDuration: 1000,
+   fadeDelay: 0.50
+   });
+   });
+
+   $('a[href="#ex001"]').click(function(event) {
+   event.preventDefault();
+   $(this).modal({
+   fadeDuration: 1000,
+   fadeDelay: 1.75
+   });
+   });
+
+   $('a[href="#ex10"]').click(function(event){
+   event.preventDefault();
+   $(this).modal({
+   closeClass: 'icon-remove',
+   closeText: '!'
+   });
+   });
+
+   });
+   </script>
+ 
+   <!-- Image 1 -->
+   <div id="ex1" class="modal">
+    <img src="poweredbygnulinux.jpg" width="100" height="100">
+    <p>Thanks for clicking. That felt good.</p>
+    <a href="#" rel="modal:close">Close</a>
+   </div>
+
+
+   <!-- Image 2 -->
+   <div id="ex2" class="modal">
+    <p>Thanks for clicking. That felt good.</p>
+    <a href="#" rel="modal:close">Close</a>
+   </div>
+
+   <!-- Link to open the modal -->
+ 
+
+   <div class="grid-container">
+    <div class="grid-item"><a href="#ex1" rel="modal:open">Thumb #1</a></div>
+    <div class="grid-item"><a href="#ex1" rel="modal:open">Thumb #2</a></div>
+    <div class="grid-item"><a href="#ex1" rel="modal:open">Thumb #3</a></div>
+    <div class="grid-item"><a href="#ex1" rel="modal:open">Thumb #4</a></div>
+    <div class="grid-item"><a href="#ex1" rel="modal:open">Thumb #5</a></div>
+    <div class="grid-item"><a href="#ex1" rel="modal:open">Thumb #6</a></div>
+    <div class="grid-item"><a href="#ex1" rel="modal:open">Thumb #7</a></div>
+    <div class="grid-item"><a href="#ex1" rel="modal:open">Thumb #8</a></div>
+    <div class="grid-item"><a href="#ex1" rel="modal:open">Thumb #9</a></div>
+   </div>
+  </body>
+</html>
